@@ -46,3 +46,29 @@ export const getUserInfoAPI = () => {
 
   })
 }
+
+// 更新头像信息
+export const updateAvatarAPI = (avatar) => {
+  return myAxios({
+    url: '/my/update/avatar',
+    method: 'PATCH',
+    data: { avatar },
+    headers: { Authorization: store.state.token }
+  })
+}
+
+/**
+ * 等待接口
+ */
+// export const saveUserInfoAPI = ({ name, age, birthday, briefInfo, contact, area }) => {
+//   return myAxios(
+//     {
+//       url: '',
+//       method: '',
+//       data: {
+//         name, age, birthday, briefInfo, contact, area
+//       },
+//       headers: { Authorization: store.state.token }
+//     }
+//   )
+// }
