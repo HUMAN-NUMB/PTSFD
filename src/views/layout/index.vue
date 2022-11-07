@@ -39,8 +39,8 @@
 
       </el-aside>
       <el-container>
-        <el-main><router-view></router-view></el-main>
-        <el-footer>© www.张伟是混蛋.com </el-footer>
+        <el-main class="router_exchange"><router-view></router-view></el-main>
+        <!-- <el-footer>© www.张伟是混蛋.com </el-footer> -->
       </el-container>
     </el-container>
   </el-container>
@@ -79,7 +79,8 @@ export default {
         {
           first_img: require('@/assets/images/用户中心图标.png'),
           middle_text: '用户中心',
-          last_img: require('@/assets/images/右箭头图标.png')
+          last_img: require('@/assets/images/右箭头图标.png'),
+          route_url: 'user'
         },
         {
           first_img: require('@/assets/images/退出图标.png'),
@@ -306,5 +307,9 @@ export default {
   margin-right: 10px;
   object-fit: cover;
 }
-
+.router_exchange{
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  align-items: center;
+}
 </style>
