@@ -58,7 +58,7 @@ export const updateAvatarAPI = (avatar) => {
 }
 
 /**
- * 等待接口
+ * 等待接口 用户个人信息
  */
 // export const saveUserInfoAPI = ({ name, age, birthday, briefInfo, contact, area }) => {
 //   return myAxios(
@@ -69,6 +69,20 @@ export const updateAvatarAPI = (avatar) => {
 //         name, age, birthday, briefInfo, contact, area
 //       },
 //       headers: { Authorization: store.state.token }
+//     }
+//   )
+// }
+
+/**
+ * 等待接口 可以写死
+ */
+// export const getBookSourseAPI = () => {
+//   return myAxios(
+//     {
+//       url: '',
+//       method: '',
+//       data: {},
+//       headers: {}
 //     }
 //   )
 // }
