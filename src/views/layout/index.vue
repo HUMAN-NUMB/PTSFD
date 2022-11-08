@@ -69,7 +69,8 @@ export default {
         {
           first_img: require('@/assets/images/轻松一刻图标.png'),
           middle_text: '轻松一刻',
-          last_img: require('@/assets/images/右箭头图标.png')
+          last_img: require('@/assets/images/右箭头图标.png'),
+          route_url: 'laugh'
         },
         {
           first_img: require('@/assets/images/心灵树洞图标.png'),
