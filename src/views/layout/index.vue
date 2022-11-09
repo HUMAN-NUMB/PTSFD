@@ -64,7 +64,8 @@ export default {
         {
           first_img: require('@/assets/images/预测报告图标.png'),
           middle_text: '预测报告',
-          last_img: require('@/assets/images/右箭头图标.png')
+          last_img: require('@/assets/images/右箭头图标.png'),
+          route_url: 'test'
         },
         {
           first_img: require('@/assets/images/轻松一刻图标.png'),

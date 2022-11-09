@@ -86,3 +86,17 @@ export const updateAvatarAPI = (avatar) => {
 //     }
 //   )
 // }
+
+/**
+ * 获取题目资源
+ */
+// export const getTestSourseAPI = () => {
+//   return myAxios(
+//     {
+//       url: '',
+//       method: '',
+//       data: {},
+//       headers: {}
+//     }
+//   )
+// }

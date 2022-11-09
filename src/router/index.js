@@ -44,6 +44,16 @@ const routes = [
       name: 'laugh',
       path: 'laugh',
       component: () => import('@/views/routes/my-laugh.vue')
+    },
+    {
+      name: 'test',
+      path: 'test',
+      component: () => import('@/views/routes/test/my-test.vue')
+    },
+    {
+      name: 'base-test',
+      path: 'base-test',
+      component: () => import('@/views/routes/test/my-basic-test.vue')
     }
     ]
 
