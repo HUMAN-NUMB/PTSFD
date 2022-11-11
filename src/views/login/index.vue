@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { loginAPI } from '@/api'
+import { loginAPINew } from '@/api'
 import { mapMutations } from 'vuex'
 export default {
   name: 'my-login',
@@ -51,7 +51,7 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { pattern: /^\S{6,15}$/, message: '密码必须是6-15的非空字符', trigger: 'blur' }
+          { pattern: /^\S{1,10}$/, message: '密码必须是1-10的非空字符', trigger: 'blur' }
         ]
       }
     }
@@ -63,20 +63,20 @@ export default {
     loginFn () {
       this.$refs.form.validate(async valid => {
         if (valid) {
-          const { data: res } = await loginAPI(this.form)
-          // console.log(res)
-          // 异常处理:return结束并弹窗提示
-          if (res.code === 1) { return this.$message.error(res.message) }
-          // 注册成功弹窗提示
+          const { data: res } = await loginAPINew(this.form)
+          // 异常处理:已在响应拦截器准备
+          // 登录成功弹窗提示
           this.$message({
-            message: res.message,
+            message: '登录成功!',
             type: 'success'
           })
           // 将token存入vuex
-          this.updataToken(res.token)
+          this.updataToken(`Bearer ${res.access}`)
           // 路由跳转
           this.$router.push({ path: '/' })
         } else { return false }
+        // const res1 = await getUserInfoAPINew()
+        // console.log(res1)
       })
     }
   }

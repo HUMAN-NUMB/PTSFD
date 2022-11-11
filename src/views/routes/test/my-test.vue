@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .my-test{
   width: 90%;
   height: 95%;

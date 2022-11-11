@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { getListAPI } from '@/api'
+import { getListAPINew } from '@/api'
 export default {
   name: 'my-register',
   data () {
@@ -59,7 +59,7 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { pattern: /^\S{6,15}$/, message: '密码必须是6-15的非空字符', trigger: 'blur' }
+          { pattern: /^\S{5,15}$/, message: '密码必须是5-15的非空字符', trigger: 'blur' }
         ],
         repassword: [
           { required: true, message: '请再次输入密码', trigger: 'blur' },
@@ -74,13 +74,13 @@ export default {
     registerFn () {
       this.$refs.form.validate(async valid => {
         if (valid) {
-          const { data: res } = await getListAPI(this.form)
-          // console.log(res)
+          const res = await getListAPINew(this.form)
+          console.log(res)
           // 异常处理:return结束并弹窗提示
-          if (res.code === 1) { return this.$message.error(res.message) }
+          // if (res.code === 1) { return this.$message({type:'error',}) }
           // 注册成功弹窗提示
           this.$message({
-            message: res.message,
+            message: '注册成功',
             type: 'success'
           })
           // 路由跳转

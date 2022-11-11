@@ -1,8 +1,10 @@
 // 封装的是具体的接口请求方法
 // 注意：每个方法只负责请求一个url地址
-import myAxios from '@/utils/request'
+import { myAxios, myAxiosNew } from '@/utils/request'
+// import {  } from '@/utils/request'
 // 引入store
 import store from '../store/index'
+// 旧注册
 export const getListAPI = ({ username, password, repassword }) => {
   // 原地是一个Promise对象（内部包含原生ajax请求）
   // return这个Promise对象到逻辑页面，去那边对Promise对象提取结果
@@ -19,11 +21,30 @@ export const getListAPI = ({ username, password, repassword }) => {
     }
   })
 }
+// 新注册
+export const getListAPINew = ({ username, password, repassword }) => {
+  // 原地是一个Promise对象（内部包含原生ajax请求）
+  // return这个Promise对象到逻辑页面，去那边对Promise对象提取结果
+  return myAxiosNew({
+    url: '/user/',
+    method: 'POST',
+    // axios传参params，data
+    // params的对象参数名和值，axios源码会把参数和值，拼接在url?后面给后台（query查询字符串）
+    // data的对象参数名和值，axios源码会把参数和值，拼接在请求体里（body参数）
+    data: {
+      username,
+      password,
+      repassword
+    }
+  })
+}
+
 /**
  *
  * @param {*} param0 {username:用户名，password:密码}
  * @returns Promise对象
  */
+// 旧登录
 export const loginAPI = ({ username, password }) => {
   return myAxios({
     url: '/api/login',
@@ -34,7 +55,18 @@ export const loginAPI = ({ username, password }) => {
     }
   })
 }
-// 获得用户信息
+// 新登录
+export const loginAPINew = ({ username, password }) => {
+  return myAxiosNew({
+    url: '/auth/',
+    method: 'POST',
+    data: {
+      username,
+      password
+    }
+  })
+}
+// 获得用户信息--旧
 export const getUserInfoAPI = () => {
   return myAxios({
     url: '/my/userinfo',
@@ -43,16 +75,26 @@ export const getUserInfoAPI = () => {
     // 传参给后台：params（查询字符串query）、data（请求体body）、headers（请求头）
     // 由于this此处指向无法指向vm，所以要引入store
     headers: { Authorization: store.state.token }
-
+  })
+}
+// 获得用户信息--新
+export const getUserInfoAPINew = () => {
+  return myAxiosNew({
+    url: '/info',
+    // method不屑默认就是‘get’方式请求
+    method: 'GET',
+    // 传参给后台：params（查询字符串query）、data（请求体body）、headers（请求头）
+    // 由于this此处指向无法指向vm，所以要引入store
+    headers: { Authorization: store.state.token }
   })
 }
 
 // 更新头像信息
-export const updateAvatarAPI = (avatar) => {
-  return myAxios({
-    url: '/my/update/avatar',
+export const updateAvatarAPI = (form) => {
+  return myAxiosNew({
+    url: '/info/',
     method: 'PATCH',
-    data: { avatar },
+    data: form,
     headers: { Authorization: store.state.token }
   })
 }
@@ -61,10 +103,10 @@ export const updateAvatarAPI = (avatar) => {
  * 等待接口 用户个人信息
  */
 // export const saveUserInfoAPI = ({ name, age, birthday, briefInfo, contact, area }) => {
-//   return myAxios(
+//   return myAxiosNew(
 //     {
-//       url: '',
-//       method: '',
+//       url: '/info/',
+//       method: 'PUT',
 //       data: {
 //         name, age, birthday, briefInfo, contact, area
 //       },

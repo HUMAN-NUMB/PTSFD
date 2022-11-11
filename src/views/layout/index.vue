@@ -19,13 +19,13 @@
               <div class="aside_img_name">
                 <!-- 利用null判断运算符 省去v-if -->
                 <img
-                  :src="user_pic ?? require('../../assets/images/scene.jpg')"
+                  :src="image ?? require('../../assets/images/scene.jpg')"
                   alt=""
                 />
                 <!-- 用 || 判断，不用??，因为空字符串不生效 -->
                 <div class="aside_textbox" >
-                                  <span>欢迎{{ nickname || username }}</span>
-                                  <span>简介：</span>
+                                  <span>欢迎{{ nickname  }}</span>
+                                  <span>简介：{{introduction}}</span>
                 </div>
               </div>
         </div>
@@ -110,7 +110,7 @@ export default {
   },
   // 映射
   computed: {
-    ...mapGetters(['username', 'nickname', 'user_pic'])
+    ...mapGetters(['nickname', 'image', 'introduction'])
   }
   // 登录之后跳转到主页这里时，获取用户的信息
   // (不要在这写，如果在这写，刷新主页，每次都会发送请求获取已经获取过的内容，浪费资源)
@@ -135,6 +135,8 @@ export default {
       background-color: #77bdee;
       //解决父子margin-top塌陷问题
       overflow: hidden;
+      background: url('../../assets/images/左侧上背景.jpg') no-repeat center;
+      background-size: 100% 100%;
       // display: flex;
       // justify-content: center;
       // border-top: 1px solid #000;
@@ -151,8 +153,8 @@ export default {
                 // align-self: center;
                 border-radius: 50%;
                 background-color: white;
-                width: 50px;
-                height: 50px;
+                width: 34%;
+                height: 54px;
                 // margin-right: 26px;
               }
         .aside_textbox{
@@ -167,6 +169,14 @@ export default {
             line-height: 20px;
             color: white;
             font-size: 12px;
+            //设置超过1行就省略
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-overflow: -webkit-ellipsis-lastline;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            -webkit-box-orient: vertical;
           }
         }
 
@@ -181,7 +191,7 @@ export default {
       // }
     }
     .exit{
-      margin-top: 3rem;
+      margin-top: 2rem;
       height: 30px;
       border-radius: 1rem;
       background-color: #cae9ff;

@@ -101,6 +101,23 @@ export default {
         border-top: 1px solid black;
         margin-top: 4%;
         height: 70%;
+        .el-radio-group{
+            display: flex;
+            flex-direction: column;
+            .el-radio{
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            .el-radio__label{
+                  color: rgb(187, 187, 187);
+                  font-size: 22px;
+                  line-height: 22px;
+                  }
+            .el-radio__label:hover{
+                  color: pink;
+                  }
+              }
+        }
         .btnGroup{
             margin: 0 auto;
             width: 98%;
@@ -147,21 +164,5 @@ export default {
 
   }
 }
-.el-radio{
-    margin-top: 36px;
-    display: flex;
-    align-items: center;
-}
-.el-radio__label{
-    color: rgb(187, 187, 187);
-    font-size: 22px;
-    line-height: 22px;
-}
-.el-radio__label:hover{
-    color: pink;
-}
-.el-radio-group{
-    display: flex;
-    flex-direction: column;
-}
+
 </style>
