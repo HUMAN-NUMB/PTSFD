@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 // api获取用户信息
-import { getUserInfoAPI } from '@/api'
+import { getUserInfoAPINew } from '@/api'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,9 +13,14 @@ export default new Vuex.Store({
     userInfo: {}
   },
   getters: {
-    username: (state) => state.userInfo.username,
+    // username: (state) => state.userInfo.username,
     nickname: (state) => state.userInfo.nickname,
-    user_pic: (state) => state.userInfo.user_pic
+    sex: (state) => state.userInfo.sex,
+    area: (state) => state.userInfo.area,
+    contact: (state) => state.userInfo.contact,
+    image: (state) => state.userInfo.image,
+    introduction: (state) => state.userInfo.introduction,
+    birthday: (state) => state.userInfo.birthday
   },
   mutations: {
     // 更新token的函数
@@ -30,8 +35,9 @@ export default new Vuex.Store({
   actions: {
     // 异步获得用户信息
     async initUserInfo (context) {
-      const { data: res } = await getUserInfoAPI()
-      if (res.code === 0) { context.commit('updateUserInfo', res.data) }
+      const { data: res } = await getUserInfoAPINew()
+      console.log(res)
+      context.commit('updateUserInfo', res)
     }
   },
   modules: {
