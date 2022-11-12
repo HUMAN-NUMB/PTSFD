@@ -3,7 +3,7 @@
   <div class="my-heart">
       <div class="commentArea" >
 
-        <div  class="eachBox" v-for="(item,index) in msgdata" :key="index">
+        <div   class="eachBox" v-bind:class="{ 'eachBox': msgdata[index].isLeft, 'eachBox2': !msgdata[index].isLeft }" v-for="(item,index) in msgdata" :key="index">
           <div :style="{'background-image':'url('+item.favicon+')'}" ></div>
           <div ><span>{{item.message}}</span></div>
         </div>
@@ -24,6 +24,7 @@ export default {
   name: 'my-heart',
   data () {
     return {
+      isLeft: true,
       /**
        * websocket部分
        */
@@ -99,9 +100,14 @@ export default {
     // 获取消息的函数
     getMessage: function (msg) {
       const data = JSON.parse(msg.data)
+      if (data.favicon === this.favicon) this.isLeft = false
+      else this.isLeft = true
+      data.isLeft = this.isLeft
+      // console.log(this.isLeft)
       // data.favicon = window.atob(msg.data.favicon)
       this.msgdata.push(data)
-      console.log(data)
+
+      // console.log(data)
     },
     // 发送消息的函数
     send: function () {
@@ -174,12 +180,21 @@ export default {
             background-color: rgb(98, 178, 231);
             position: relative;
             top: 6px;
-            left: 21px;
+            left: 3%;
             border-radius: 5px;
             span{
               color: rgb(236, 254, 234);
               padding: 0 24px;
             }
+          }
+        }
+        .eachBox2{
+          align-items: center ;
+          flex-direction: row-reverse;
+          div:last-child{
+            top: 6px;
+            // right: 40px;
+            left: -3%;
           }
         }
     }
