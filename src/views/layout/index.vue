@@ -76,7 +76,8 @@ export default {
         {
           first_img: require('@/assets/images/心灵树洞图标.png'),
           middle_text: '心灵树洞',
-          last_img: require('@/assets/images/右箭头图标.png')
+          last_img: require('@/assets/images/右箭头图标.png'),
+          route_url: 'heart'
         },
         {
           first_img: require('@/assets/images/用户中心图标.png'),
@@ -221,7 +222,7 @@ export default {
     }
   }
   .el-header {
-    height: 87px !important;
+    height: 78px !important;
     display: flex;
     justify-content: space-between;
     background-color: rgb(85, 156, 206);
@@ -263,7 +264,7 @@ export default {
       .btn{
 
             position: absolute;
-            top: 33px;
+            top: 29px;
             /* left: -54px; */
             right: 2.1rem;
             // background-color: pink;
@@ -323,5 +324,6 @@ export default {
   background-color: rgb(235, 235, 235);
   display: flex;
   align-items: center;
+  max-height: 100%;
 }
 </style>

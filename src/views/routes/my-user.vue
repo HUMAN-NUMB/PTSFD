@@ -95,10 +95,10 @@ export default {
     },
     // 选择完图片后要读取该文件，然后转化格式
     async onFileChange (e) {
-      console.log(1)
+      // console.log(1)
       // 获取文件信息
       const files = e.target.files
-      console.log(files)
+      // console.log(files)
       // 没获取到
       if (files[0].length === 0) {
         this.avatar = ''
@@ -114,12 +114,12 @@ export default {
       console.log(this.avatar)
       const form = new FormData()
       form.append('image', files[0])
-      const { data: res } = await updateAvatarAPI(form)
-      console.log(res)
+      await updateAvatarAPI(form)
+      // console.log(res)
       this.$message.success('保存成功')
       // 更新个人信息
       this.$store.dispatch('initUserInfo')
-      console.log(this.ruleForm)
+      // console.log(this.ruleForm)
     },
     // 更新后台头像信息
     async uploadFnImg () {
@@ -136,10 +136,10 @@ export default {
     saveUserInfo () {
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
-          console.log(11)
+          // console.log(11)
           // 发出请求，送出表单内容
-          const { data: res } = await updateAvatarAPI(this.ruleForm)
-          console.log(res)
+          await updateAvatarAPI(this.ruleForm)
+          // console.log(res)
           // 更新个人信息
           this.$store.dispatch('initUserInfo')
           this.$message.success('个人信息已更新')
@@ -151,8 +151,8 @@ export default {
   // created(){
   // 进来时获取用户信息
   // }
-  mounted () {
-    console.log(this.birthday)
+  async mounted () {
+    // console.log(this.birthday)
   }
 }
 </script>
