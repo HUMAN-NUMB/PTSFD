@@ -1,6 +1,6 @@
 // 封装的是具体的接口请求方法
 // 注意：每个方法只负责请求一个url地址
-import { myAxios, myAxiosNew } from '@/utils/request'
+import { myAxios, myAxiosNew, myAxiosNewFromYiYan } from '@/utils/request'
 // import {  } from '@/utils/request'
 // 引入store
 import store from '../store/index'
@@ -26,7 +26,7 @@ export const getListAPINew = ({ username, password, repassword }) => {
   // 原地是一个Promise对象（内部包含原生ajax请求）
   // return这个Promise对象到逻辑页面，去那边对Promise对象提取结果
   return myAxiosNew({
-    url: '/user/',
+    url: '/user',
     method: 'POST',
     // axios传参params，data
     // params的对象参数名和值，axios源码会把参数和值，拼接在url?后面给后台（query查询字符串）
@@ -58,7 +58,7 @@ export const loginAPI = ({ username, password }) => {
 // 新登录
 export const loginAPINew = ({ username, password }) => {
   return myAxiosNew({
-    url: '/auth/',
+    url: '/auth',
     method: 'POST',
     data: {
       username,
@@ -85,6 +85,7 @@ export const getUserInfoAPINew = () => {
     method: 'GET',
     // 传参给后台：params（查询字符串query）、data（请求体body）、headers（请求头）
     // 由于this此处指向无法指向vm，所以要引入store
+
     headers: { Authorization: store.state.token }
   })
 }
@@ -92,7 +93,7 @@ export const getUserInfoAPINew = () => {
 // 更新头像信息
 export const updateAvatarAPI = (form) => {
   return myAxiosNew({
-    url: '/info/',
+    url: '/info',
     method: 'PATCH',
     data: form,
     headers: { Authorization: store.state.token }
@@ -132,13 +133,54 @@ export const updateAvatarAPI = (form) => {
 /**
  * 获取题目资源
  */
-// export const getTestSourseAPI = () => {
-//   return myAxios(
-//     {
-//       url: '',
-//       method: '',
-//       data: {},
-//       headers: {}
-//     }
-//   )
-// }
+export const getTestSourseAPI = () => {
+  return myAxiosNew(
+    {
+      url: '/question',
+      method: 'GET',
+      // data: { },
+      headers: { Authorization: store.state.token, advance: '' }
+    }
+  )
+}
+
+/**
+ * 发送分数记录给后台
+ */
+export const sendScoreToBackEnd = (score) => {
+  return myAxiosNew(
+    {
+      url: '/score',
+      method: 'POST',
+      data: { score },
+      headers: { Authorization: store.state.token }
+
+    }
+  )
+}
+
+/**
+ * 获取用户的答题信息
+ */
+export const getScoreAndCount = () => {
+  return myAxiosNew(
+    {
+      url: '/score',
+      method: 'GET',
+      // data: { score },
+      headers: { Authorization: store.state.token }
+
+    }
+  )
+}
+/**
+ * 获得一言文字
+ */
+export const getTestFromYiYan = () => {
+  return myAxiosNewFromYiYan(
+    {
+      url: '',
+      params: { c: 'f', encode: 'text' }
+    }
+  )
+}

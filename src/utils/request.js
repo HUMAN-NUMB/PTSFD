@@ -9,11 +9,14 @@ export const myAxios = axios.create({
 export const myAxiosNew = axios.create({
   baseURL: 'https://b2de4f056142.akimitsu.top/'
 })
-
+export const myAxiosNewFromYiYan = axios.create({
+  baseURL: 'https://v1.hitokoto.cn'
+})
 // 定义响应拦截器--针对登录失败和注册失败
 myAxiosNew.interceptors.response.use(function (response) {
   // 响应http状态码为2xx或3xx时触发成功的回调，形参中的“response”是“成功的结果”
   // return到axios原地Promise对象，作为成功的结果
+  // console.log(response.request)
   return response
 }, function (err) {
   console.dir(err)
