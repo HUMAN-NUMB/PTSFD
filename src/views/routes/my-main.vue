@@ -1,15 +1,17 @@
 <template>
-  <div class="my-main">
+    <div class="my-main">
+
       <div class="left_img"><div><span>{{left_span}}</span></div></div>
       <div class="right_img">
         <div class="top_box"><div class="top_echart" id="photoFirst" style="width: 90%;height:100%;"></div></div>
         <div class="bottom_box"><div class="bottom_echart" id="photoSeconed" style="width: 90%;height:100%;"></div></div>
-      </div>
+
   </div>
+    </div>
 </template>
 
 <script>
-import '@/assets/font/font-main.css'
+// import '@/assets/font/font-main.css'
 import * as echarts from 'echarts'
 import { getTestFromYiYan, getScoreAndCount } from '@/api'
 export default {
@@ -26,7 +28,10 @@ export default {
         { value: 0, name: '90~100' }
       ],
       score_arr: [],
-      times_arr: []
+      times_arr: [],
+
+      myChart: null,
+      myNextChart: null
     }
   },
   methods: {
@@ -46,7 +51,7 @@ export default {
   async mounted () {
     // 获取一言
     const res = await getTestFromYiYan()
-    // console.log(res.data)
+    console.log(res.data)
     this.left_span = res.data
     // 获取次数和分数
     const { data: res1 } = await getScoreAndCount()
@@ -56,7 +61,7 @@ export default {
       this.times_arr.push(item.times)
       this.sectorDataFill(item.score)
     }
-    // console.log(this.score_arr, this.times_arr)
+    console.log(this.score_arr, this.times_arr)
     // 基于准备好的dom，初始化echarts实例
     const myChart = echarts.init(document.getElementById('photoFirst'))
     // 绘制图表
@@ -115,9 +120,20 @@ export default {
       myChart.resize()
       myNextChart.resize()
     }
+  },
+  beforeUnmount () {
+    console.log('beforeUnmount')
+    if (!this.myChart && !this.myNextChart) {
+      return
+    }
+    // window.removeEventListener('resize', this.__resizeHandler)
+    this.myChart.dispose()
+    this.myNextChart.dispose()
+    this.myChart = null
+    this.myNextChart = null
   }
-
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -146,7 +162,7 @@ export default {
         // display: flex;
         text-align: center;
         >span{
-          font-family: 'scoreMain';
+          // font-family: 'scoreMain';
           font-size: 26px;
         }
       }
