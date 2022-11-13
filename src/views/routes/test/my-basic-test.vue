@@ -145,7 +145,7 @@ export default {
       position: relative;
       // z-index: 2;
       >span{
-        font-family: 'scoreFont';
+        font-family: 'scoreMain';
         position: absolute;
         top: 40%;
         left: 26%;

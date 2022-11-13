@@ -30,7 +30,7 @@ export default {
        */
       // textarea框的信息
       textWillSend: '',
-      path: 'ws://127.0.0.1:8001/ws/chat',
+      path: 'wss://b2de4f056142.akimitsu.top/ws/chat',
       socket: '',
       favicon: '',
       message: '12345',
