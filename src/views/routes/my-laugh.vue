@@ -54,13 +54,13 @@ export default {
       // 音频列表
       audio: [
         {
-          url: 'http://music.163.com/song/media/outer/url?id=1947208581.mp3'
+          url: require('../../assets/audio/你瞒我瞒.mp3')
         },
         {
-          url: 'http://music.163.com/song/media/outer/url?id=1371382065.mp3'
+          url: require('../../assets/audio/遇见.mp3')
         },
         {
-          url: 'http://music.163.com/song/media/outer/url?id=1379662220.mp3'
+          url: require('../../assets/audio/IU.mp3')
         }
       ],
       // 当前播放的音乐的索引--默认第一首
