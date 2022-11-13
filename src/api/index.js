@@ -26,7 +26,7 @@ export const getListAPINew = ({ username, password, repassword }) => {
   // 原地是一个Promise对象（内部包含原生ajax请求）
   // return这个Promise对象到逻辑页面，去那边对Promise对象提取结果
   return myAxiosNew({
-    url: '/user',
+    url: '/register',
     method: 'POST',
     // axios传参params，data
     // params的对象参数名和值，axios源码会把参数和值，拼接在url?后面给后台（query查询字符串）

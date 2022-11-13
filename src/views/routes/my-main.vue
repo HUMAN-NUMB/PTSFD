@@ -1,6 +1,6 @@
 <template>
   <div class="my-main">
-      <div class="left_img"><span>{{left_span}}</span></div>
+      <div class="left_img"><div><span>{{left_span}}</span></div></div>
       <div class="right_img">
         <div class="top_box"><div class="top_echart" id="photoFirst" style="width: 90%;height:100%;"></div></div>
         <div class="bottom_box"><div class="bottom_echart" id="photoSeconed" style="width: 90%;height:100%;"></div></div>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import '@/assets/font/font-main.css'
 import * as echarts from 'echarts'
 import { getTestFromYiYan, getScoreAndCount } from '@/api'
 export default {
@@ -139,9 +140,16 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      >span{
-
+      >div{
+        width: 80%;
+        margin: 0 auto;
+        // display: flex;
+        text-align: center;
+        >span{
+          font-family: 'scoreMain';
+          font-size: 26px;
         }
+      }
 
     }
     .right_img{
