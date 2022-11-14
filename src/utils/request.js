@@ -1,6 +1,9 @@
 // 基于axios封装，网络请求的函数
 import axios from 'axios'
 import { Message } from 'element-ui'
+import store from '@/store'
+import { UpdateTokenAPI } from '@/api'
+import router from '@/router'
 // axios.create()创建一个带配置项的自定义axios函数
 // myAxios请求的时候，地址baseURL+url，然后去请求服务器
 export const myAxios = axios.create({
@@ -12,17 +15,30 @@ export const myAxiosNew = axios.create({
 export const myAxiosNewFromYiYan = axios.create({
   baseURL: 'https://v1.hitokoto.cn'
 })
+
 // 定义响应拦截器--针对登录失败和注册失败
 myAxiosNew.interceptors.response.use(function (response) {
   // 响应http状态码为2xx或3xx时触发成功的回调，形参中的“response”是“成功的结果”
   // return到axios原地Promise对象，作为成功的结果
   // console.log(response.request)
   return response
-}, function (err) {
+}, async function (err) {
   console.dir(err)
   // 登录失败的情况，提示
   if (err.response.status === 401) {
-    Message.error('登录失败')
+    if (!store.state.token) Message.error('登录失败')
+    else {
+      // const newToken = await UpdateTokenAPI(this.$store.state.refresh)
+      // console.log(newToken)
+      Message.error('token已过期，正在为您更新')
+      const { data: newToken } = await UpdateTokenAPI(store.state.refresh)
+      console.log(newToken)
+      store.state.token = `Bearer ${newToken.access}`
+      console.log(store.state.token)
+      // Message.success('请重进该功能模块')
+      router.go(0)
+      window.location.reload()
+    }
   } else if (err.response.status === 400) {
     Message.error('表单提交有误!')
   }

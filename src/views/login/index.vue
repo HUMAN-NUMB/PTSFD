@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     // 拓展运算符映射
-    ...mapMutations(['updataToken']),
+    ...mapMutations(['updataToken', 'updateRefresh']),
     // 登录->点击事件
     loginFn () {
       this.$refs.form.validate(async valid => {
@@ -70,8 +70,11 @@ export default {
             message: '登录成功!',
             type: 'success'
           })
+          console.log(res)
           // 将token存入vuex
           this.updataToken(`Bearer ${res.access}`)
+          // 将refresh存入vuex
+          this.updateRefresh(res.refresh)
           // 路由跳转
           this.$router.push({ path: '/' })
         } else { return false }
