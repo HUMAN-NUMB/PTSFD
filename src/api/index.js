@@ -66,6 +66,17 @@ export const loginAPINew = ({ username, password }) => {
     }
   })
 }
+
+// 更新token
+export const UpdateTokenAPI = (refresh) => {
+  return myAxiosNew({
+    url: '/auth/refresh',
+    method: 'POST',
+    data: {
+      refresh: refresh
+    }
+  })
+}
 // 获得用户信息--旧
 export const getUserInfoAPI = () => {
   return myAxios({

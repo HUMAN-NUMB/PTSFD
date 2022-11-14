@@ -64,13 +64,13 @@ const routes = [
 
   }
 ]
+
 const router = new VueRouter({ routes })
 // 全局前置路由守卫
 router.beforeEach((to, from, next) => {
   // token是资源请求的条件，防止401
   // 当有token 或 为了避免进入主页后，切换别的路由时重复请求执行时才进行用户信息获取
   if (store.state.token && !store.state.userInfo.nickname) { store.dispatch('initUserInfo') }
-
   next()
 })
 export default router

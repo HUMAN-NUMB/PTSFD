@@ -80,7 +80,8 @@ export default {
         alert('您的浏览器不支持socket')
       } else {
         // 实例化socket
-        this.socket = new WebSocket(this.path)
+        const Newstr = this.$store.state.token.replace('Bearer ', '')
+        this.socket = new WebSocket(`${this.path}?${Newstr}`)
         // 监听socket连接
         this.socket.onopen = this.open
         // 监听socket错误信息
