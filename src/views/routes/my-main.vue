@@ -11,7 +11,7 @@
 </template>
 
 <script>
-// import '@/assets/font/font-main.css'
+import '@/assets/font/font.css'
 import * as echarts from 'echarts'
 import { getTestFromYiYan, getScoreAndCount } from '@/api'
 export default {
@@ -162,7 +162,7 @@ export default {
         // display: flex;
         text-align: center;
         >span{
-          // font-family: 'scoreMain';
+          font-family: 'scoreFont';
           font-size: 26px;
         }
       }

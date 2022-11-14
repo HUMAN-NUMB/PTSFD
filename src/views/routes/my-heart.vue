@@ -147,7 +147,7 @@ export default {
     .commentArea{
         margin: 0 auto;
         width: 95%;
-        height: 70%;
+        height: 59vh;
         // background-color: red;
         overflow: auto;
         max-height: 70%;
@@ -202,7 +202,7 @@ export default {
         border-top: 1px solid rgb(167, 167, 167);
         margin: 0 auto;
         width: 95%;
-        height: 30%;
+        height: 14vh;
         background-color: white;
 
         .icons{
