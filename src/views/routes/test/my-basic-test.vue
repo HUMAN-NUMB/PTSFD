@@ -29,19 +29,15 @@ export default {
   name: 'my-base-test',
   async created () {
     // 获取题目的资源
-    // const form = new FormData()
-    // form.append('Advance', null)
-    // const obj = { advance: '123' }
-    // const form = JSON.stringify(obj)
-    // console.log(form)
     const { data: res } = await getTestSourseAPI()
     this.accordingAPISC = res
-    // console.log()
+    // 动态赋值资源长度的全0数组
+    this.score_arr = new Array(this.accordingAPISC.length).fill(0)
 
-    console.log(this.accordingAPISC)
+    console.log(this.score_arr)
   },
   mounted () {
-    console.log(this.score_arr)
+    // console.log(this.score_arr)
   },
   data () {
     return {
@@ -58,38 +54,39 @@ export default {
       questions_score_reserve: [4, 3, 2, 1],
       // 题目的选项
       questions_choice: ['偶尔', '稍有', '常有', '持续'],
-      // 题目的资源
-      questions_resource: [
-        {
-          qs_title: '关于大学生跳楼的看法',
-          qs_choice: [
-            { detail: '如何评价', score: 1 },
-            { detail: '扎不多得了', score: 2 },
-            { detail: '神中神', score: 3 },
-            { detail: '不如原神', score: 4 }
-          ]
-        },
-        {
-          qs_title: '关于大学生跳楼的看法2',
-          qs_choice: [
-            { detail: '如何评价2', score: 1 },
-            { detail: '扎不多得了2', score: 2 },
-            { detail: '神中神2', score: 3 },
-            { detail: '不如原神2', score: 4 }
-          ]
-        },
-        {
-          qs_title: '关于大学生跳楼的看法3',
-          qs_choice: [
-            { detail: '如何评价3', score: 1 },
-            { detail: '扎不多得了323133131233', score: 2 },
-            { detail: '神中神3', score: 3 },
-            { detail: '不如原神3', score: 4 }
-          ]
-        }
-      ],
       // 当前的书本资源的索引，刚进来是0
       qs_index: 0
+      // 题目的资源
+      // questions_resource: [
+      //   {
+      //     qs_title: '关于大学生跳楼的看法',
+      //     qs_choice: [
+      //       { detail: '如何评价', score: 1 },
+      //       { detail: '扎不多得了', score: 2 },
+      //       { detail: '神中神', score: 3 },
+      //       { detail: '不如原神', score: 4 }
+      //     ]
+      //   },
+      //   {
+      //     qs_title: '关于大学生跳楼的看法2',
+      //     qs_choice: [
+      //       { detail: '如何评价2', score: 1 },
+      //       { detail: '扎不多得了2', score: 2 },
+      //       { detail: '神中神2', score: 3 },
+      //       { detail: '不如原神2', score: 4 }
+      //     ]
+      //   },
+      //   {
+      //     qs_title: '关于大学生跳楼的看法3',
+      //     qs_choice: [
+      //       { detail: '如何评价3', score: 1 },
+      //       { detail: '扎不多得了323133131233', score: 2 },
+      //       { detail: '神中神3', score: 3 },
+      //       { detail: '不如原神3', score: 4 }
+      //     ]
+      //   }
+      // ],
+
     }
   },
   methods: {
@@ -102,8 +99,24 @@ export default {
     lastQS () {
       this.qs_index--
     },
+    // 判断是否全部作答完毕
+    checkEntireQS () {
+      // 过滤出没有答题的索引index
+      const indexArr = this.score_arr.map((item, index) => index).filter((item, index) => { return this.score_arr[item] === 0 })
+      console.log(indexArr)
+      if (indexArr.length === 0) {
+        console.log(111)
+        return true
+      } else {
+        // 找到最近未答题的题--跳转
+        this.qs_index = indexArr[0]
+        this.$message.success('未答题完毕!请检查')
+        return false
+      }
+    },
     // 提交分数并且将分数记录发给后台
     async submitScore () {
+      if (!this.checkEntireQS()) return
       let score = 0
       for (const eachScore of this.score_arr) {
         score += eachScore
