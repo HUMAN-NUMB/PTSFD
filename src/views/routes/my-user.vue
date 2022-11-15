@@ -25,7 +25,7 @@
           <!-- 表单 -->
           <div class="info-config-edit">
               <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                  <el-form-item  prop="nickname" label="姓名：" ><el-input v-model="ruleForm.nickname" :placeholder="nickname"></el-input></el-form-item>
+                  <el-form-item  prop="nickname" label="姓名：" ><el-input v-model="ruleForm.nickname" :placeholder="nickname" @change="print"></el-input></el-form-item>
                   <el-form-item  prop="sex" label="性别："><el-radio v-model="ruleForm.sex" label="男" >男</el-radio><el-radio v-model="ruleForm.sex" label="女">女</el-radio></el-form-item>
                   <el-form-item  prop="birthday"  label="出生日期："><el-date-picker type="date" :placeholder="birthday" v-model="ruleForm.birthday" style="width: 100%;"  value-format="yyyy-MM-dd"></el-date-picker></el-form-item>
                   <el-form-item  prop="introduction" label="简介："><el-input v-model="ruleForm.introduction" :placeholder="introduction"></el-input></el-form-item>
@@ -52,42 +52,46 @@ export default {
       // 保存照片的链接--base64字符串
       avatar: '',
       // 表单数据部分,目前无用
-      ruleForm: {
-        nickname: '',
-        sex: '',
-        birthday: '',
-        introduction: '',
-        contact: '',
-        area: ''
-      },
+      // ruleForm: {
+      //   nickname: '',
+      //   sex: '',
+      //   birthday: '',
+      //   introduction: '',
+      //   contact: '',
+      //   area: ''
+      // },
+      ruleForm: this.$store.state.userInfo,
       rules: {
         nickname: [
-          { required: true, message: '姓名', trigger: 'blur' }
+          { required: false, message: '姓名', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        sex: [{ required: true, message: '性别', trigger: 'blur' }
+        sex: [{ required: false, message: '性别', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         birthday: [
-          { required: true, message: '生日', trigger: 'blur', type: 'string' }
+          { required: false, message: '生日', trigger: 'blur', type: 'string' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         introduction: [
-          { required: true, message: '简介', trigger: 'blur' }
+          { required: false, message: '简介', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         contact: [
-          { required: true, message: '联系方式', trigger: 'blur' }
+          { required: false, message: '联系方式', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         area: [
-          { required: true, message: '地区', trigger: 'blur' }
+          { required: false, message: '地区', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
+    print () {
+      console.log(this.ruleForm.nickname, this.$store.state.userInfo)
+    },
     // 点击选择头像
     chooseImg () {
       // 模拟点击事件
@@ -136,9 +140,17 @@ export default {
     saveUserInfo () {
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
-          // console.log(11)
+          console.log(this.ruleForm)
           // 发出请求，送出表单内容
-          await updateAvatarAPI(this.ruleForm)
+
+          await updateAvatarAPI({
+            area: this.ruleForm.area,
+            birthday: this.ruleForm.birthday,
+            contact: this.ruleForm.contact,
+            introduction: this.ruleForm.introduction,
+            nickname: this.ruleForm.nickname,
+            sex: this.ruleForm.sex
+          })
           // console.log(res)
           // 更新个人信息
           this.$store.dispatch('initUserInfo')
@@ -151,8 +163,9 @@ export default {
   // created(){
   // 进来时获取用户信息
   // }
+
   async mounted () {
-    // console.log(this.birthday)
+    console.log(this.ruleForm)
   }
 }
 </script>

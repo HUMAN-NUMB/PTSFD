@@ -5,10 +5,10 @@ Vue.use(VueRouter)
 
 const routes = [
   // 路由重定向
-  // {
-  //   path: '/',
-  //   redirect: 'login'
-  // },
+  {
+    path: '/login',
+    redirect: '/'
+  },
   {
     name: '/reg',
     path: '/reg',
@@ -19,11 +19,12 @@ const routes = [
   },
   {
     name: '/login',
-    path: '/login',
+    path: '/',
     component: () => import('@/views/login')
   },
   {
-    path: '/',
+    path: '/layout',
+    name: '/layout',
     component: () => import('@/views/layout/index'),
     children: [{
       name: 'exit',

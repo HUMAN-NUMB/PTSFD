@@ -23,6 +23,9 @@ export default {
         this.$store.commit('updataToken', '')
         // 清空用户信息
         this.$store.commit('updateUserInfo', {})
+        // 清空refresh
+        this.$store.commit('updateRefresh', '')
+
         // 跳转回登录页面
         this.$router.push('/login')
       })
