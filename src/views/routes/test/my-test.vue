@@ -3,7 +3,7 @@
         <div class="left-bagd"></div>
         <div class="right-two-button">
             <div class="top-button">
-                <img src="../../../assets/images/报告右上图.png" alt="" width="100%" height="100%" @click="$router.push('/base-test')">
+                <img src="../../../assets/images/报告右上图.png" alt="" width="100%" height="100%" @click="$router.push({name:'base-test'})">
             </div>
             <div class="bottom-button">
                 <img src="../../../assets/images/报告右下图.png" alt="" width="100%" height="100%">

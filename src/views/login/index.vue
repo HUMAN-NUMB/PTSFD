@@ -76,7 +76,7 @@ export default {
           // 将refresh存入vuex
           this.updateRefresh(res.refresh)
           // 路由跳转
-          this.$router.push({ path: '/' })
+          this.$router.push({ name: '/layout' })
         } else { return false }
         // const res1 = await getUserInfoAPINew()
         // console.log(res1)

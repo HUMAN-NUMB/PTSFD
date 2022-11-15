@@ -103,6 +103,7 @@ export const getUserInfoAPINew = () => {
 
 // 更新头像信息
 export const updateAvatarAPI = (form) => {
+  console.log(form)
   return myAxiosNew({
     url: '/info',
     method: 'PATCH',
