@@ -19,7 +19,7 @@
               <div class="aside_img_name">
                 <!-- 利用null判断运算符 省去v-if -->
                 <img
-                  :src="image ?? require('../../assets/images/scene.jpg')"
+                  :src="image ?? require('../../assets/images/scene.webp')"
                   alt=""
                 />
                 <!-- 用 || 判断，不用??，因为空字符串不生效 -->

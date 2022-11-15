@@ -24,7 +24,7 @@
 
 <script>
 import { getTestSourseAPI, sendScoreToBackEnd } from '@/api'
-import '@/assets/font/font.css'
+// import '@/assets/font/font-main.css'
 export default {
   name: 'my-base-test',
   async created () {
@@ -158,13 +158,14 @@ export default {
       position: relative;
       // z-index: 2;
       >span{
-        font-family: 'scoreMain';
+        // font-family: 'scoreMain';
         position: absolute;
-        top: 40%;
-        left: 26%;
-        font-size: 121px;
+        top: 25%;
+        left: 12%;
+        font-size: 29vh;
         font-style: italic;
         color: red;
+        }
       }
       .exitBtn{
         border-radius: 8px;
@@ -275,6 +276,5 @@ export default {
     }
 
   }
-}
 
 </style>
