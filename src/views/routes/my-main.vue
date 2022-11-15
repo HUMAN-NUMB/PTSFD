@@ -80,7 +80,7 @@ export default {
       },
       series: [
         {
-          name: '销量',
+          name: '第几次/分数',
           type: 'bar',
           data: this.score_arr
         }
@@ -102,7 +102,7 @@ export default {
       },
       series: [
         {
-          name: 'Access From',
+          name: '分数范围/次数',
           type: 'pie',
           radius: '50%',
           data: this.sectorSc,
