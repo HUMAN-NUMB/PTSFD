@@ -47,7 +47,7 @@ export default {
       // 上方的四个按钮
       img_icon: [
         { img_url: require('@/assets/images/轻松一刻图片1.png'), clickThing: 'lastSong' },
-        { img_url: require('@/assets/images/轻松一刻图片2.png'), clickThing: 'lastSong' },
+        { img_url: require('@/assets/images/轻松一刻图片2.png'), clickThing: '' },
         { img_url: require('@/assets/images/轻松一刻图片3.png'), clickThing: 'nextSong' },
         { img_url: require('@/assets/images/轻松一刻图片4.png'), clickThing: 'stopOrPlaySong' }
       ],
@@ -209,7 +209,7 @@ export default {
                 display: inline-block;
                 height: 81%;
                 width: 30%;
-                background-color: red;
+                // background-color: red;
                 margin-left: 4%;
                 margin-top: 4%;
                 background-repeat: no-repeat;
