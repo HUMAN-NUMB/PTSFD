@@ -62,18 +62,35 @@ export default {
 
     }
   },
+  created () {
+    // 指向vue
+    // const thisVue = this
+    // document.onkeydown = function (event) {
+    //   if (event.key === 'Enter') {
+    //     console.log(event.key)
+    //   }
+    // 进入时绑定enter键盘事件
+    window.addEventListener('keydown', this.keyDownEnter)
+    // thisVue.sendToWs()
+    // }
+  },
   mounted () {
     this.favicon = this.$store.state.userInfo.image// window.btoa(
     // 初始化
     this.init()
   },
+
   // 关闭websocket（切记）
   destroyed () {
-    // 销毁监听
+    // 销毁监听websocket
     this.socket.onclose = this.close
+    window.removeEventListener('keydown', this.keyDownEnter)
     console.log('已销毁')
   },
   methods: {
+    /**
+     * websocket
+     */
     // 初始化websocket
     init: function () {
       if (typeof (WebSocket) === 'undefined') {
@@ -124,6 +141,17 @@ export default {
     // 关闭时的函数
     close: function () {
       console.log('socket已经关闭')
+    },
+
+    /**
+     * 发送事件
+     */
+    // 绑定键盘事件
+    keyDownEnter (e) {
+      // console.log(e.key)
+      if (e.key === 'Enter') {
+        this.sendToWs()
+      }
     },
     // 点击发送，发送信息
     sendToWs () {
@@ -226,6 +254,8 @@ export default {
             outline:none;
             color: rgb(135, 135, 135);
             font-size: 20px;
+            //设置不可拖动
+            resize: none;
           }
           // >textarea:focus-visible{
           //   outline-offset: none !important;;
