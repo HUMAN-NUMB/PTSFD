@@ -34,7 +34,7 @@ export default {
           type: 'info',
           message: '已取消退出'
         })
-        this.$router.push('/')
+        this.$router.push({ name: 'main' })
       })
   }
 }
