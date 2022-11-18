@@ -6,7 +6,7 @@
                 <img src="../../../assets/images/报告右上图.png" alt="" width="100%" height="100%" @click="$router.push({name:'base-test'})">
             </div>
             <div class="bottom-button">
-                <img src="../../../assets/images/报告右下图.png" alt="" width="100%" height="100%">
+                <img src="../../../assets/images/报告右下图.png" alt="" width="100%" height="100%" @click="$router.push({name:'base-test'})">
             </div>
         </div>
     </div>
@@ -63,6 +63,9 @@ export default {
         // background-color: pink;
         // background: url('../../assets/images/报告右下图.png') no-repeat center;
         // background-size: contain;
+        >img:hover{
+          cursor: pointer;
+        }
     }
   }
 }
