@@ -29,7 +29,7 @@
                 </div>
               </div>
         </div>
-        <div class="exit" v-for="(item,index) in aside_list" :key="index" @click="sub_view(index)">
+        <div class="exit" v-for="(item,index) in aside_list" :key="index" @click="sub_view(index)" :class="{'exitActive':isActive[index]}">
               <img :src="item.first_img" alt="">
               <span>{{item.middle_text}}</span>
               <img :src="item.last_img" alt="">
@@ -49,6 +49,7 @@
 <script>
 // import { getUserInfoAPI } from '@/api'
 import { mapGetters } from 'vuex'
+import Pubsub from 'pubsub-js'
 export default {
   name: 'my-layout',
   data () {
@@ -91,8 +92,22 @@ export default {
           last_img: require('@/assets/images/右箭头图标.png'),
           route_url: 'exit'
         }
-      ]
+      ],
+      // 点击右下选项是否激活样式
+      isActive: []
     }
+  },
+  created () {
+    Pubsub.subscribe('exitCancel', (msgName, data) => {
+      // console.log(this)
+      // console.log('succ')
+      this.isActive = []
+      // console.log(this.isActive)
+      this.isActive = new Array(this.aside_list.length).fill(false)
+      // console.log(this.isActive)
+      this.isActive[data] = true
+    })
+    // Pubsub.publish('exitCancel', '1')
   },
   methods: {
 
@@ -104,6 +119,12 @@ export default {
     },
     // 左下点击时触发的路由跳转
     sub_view (index) {
+      this.isActive = []
+      // console.log(this.isActive)
+      this.isActive = new Array(this.aside_list.length).fill(false)
+      // console.log(this.isActive)
+      this.isActive[index] = true
+      // console.log(this.isActive)
       this.$router.push({
         name: this.aside_list[index].route_url
       })
@@ -112,6 +133,9 @@ export default {
   // 映射
   computed: {
     ...mapGetters(['nickname', 'image', 'introduction'])
+    // isActive () {
+    //   return new Array(this.aside_list.length).fill(false)
+    // }
   }
   // 登录之后跳转到主页这里时，获取用户的信息
   // (不要在这写，如果在这写，刷新主页，每次都会发送请求获取已经获取过的内容，浪费资源)
@@ -217,7 +241,11 @@ export default {
             font-weight: 550;
       }
     }
+    .exitActive{
+        background-color: rgb(85, 156, 206);
+    }
     .exit:hover{
+
       cursor: pointer;
     }
   }

@@ -3,7 +3,7 @@
     <div v-if="isShow " class="pop">
         <div class="img">
           <span>{{final_score}}</span>
-          <div class="exitBtn" @click="$router.push({name:'main'})"><span>返回</span><img src="../../../assets/images/返回图标.png" alt=""></div>
+          <div class="exitBtn" @click="exit"><span>返回</span><img src="../../../assets/images/返回图标.png" alt=""></div>
         </div>
     </div>
     <div class="inner-box" >
@@ -24,6 +24,7 @@
 
 <script>
 import { getTestSourseAPI, sendScoreToBackEnd } from '@/api'
+// import Pubsub from 'pubsub-js'
 // import '@/assets/font/font-main.css'
 export default {
   name: 'my-base-test',
@@ -90,6 +91,11 @@ export default {
     }
   },
   methods: {
+    // 退出事件
+    async exit () {
+      await this.$router.push({ name: 'main' })
+      // Pubsub.publish('exitCancel', 0)
+    },
     // 切换下一道
     nextQS () {
       this.qs_index++
