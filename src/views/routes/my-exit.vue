@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// import Pubsub from 'pubsub-js'
 export default {
   name: 'my-exit',
   created () {
@@ -34,6 +35,7 @@ export default {
           type: 'info',
           message: '已取消退出'
         })
+        // Pubsub.publish('exitCancel', 0)
         this.$router.push({ name: 'main' })
       })
   }

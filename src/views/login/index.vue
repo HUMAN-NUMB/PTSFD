@@ -34,6 +34,7 @@
 <script>
 import { loginAPINew } from '@/api'
 import { mapMutations } from 'vuex'
+// import Pubsub from 'pubsub-js'
 export default {
   name: 'my-login',
   data () {
@@ -77,6 +78,11 @@ export default {
           this.updateRefresh(res.refresh)
           // 路由跳转
           this.$router.push({ name: 'main' })
+          // // 触发订阅与发布
+          // this.$nextTick(function () {
+          //   console.log(11)
+          //   Pubsub.publish('exitCancel', 0)
+          // })
         } else { return false }
         // const res1 = await getUserInfoAPINew()
         // console.log(res1)

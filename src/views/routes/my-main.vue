@@ -14,6 +14,7 @@
 import '@/assets/font/font.css'
 import * as echarts from 'echarts'
 import { getTestFromYiYan, getScoreAndCount } from '@/api'
+import Pubsub from 'pubsub-js'
 export default {
   name: 'my-main',
   data () {
@@ -48,7 +49,11 @@ export default {
     }
 
   },
+  created () {
+
+  },
   async mounted () {
+    Pubsub.publish('exitCancel', 0)
     // 获取一言
     const res = await getTestFromYiYan()
     console.log(res.data)
