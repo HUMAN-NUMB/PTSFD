@@ -26,7 +26,7 @@
           <div class="info-config-edit">
               <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                   <el-form-item  prop="nickname" label="姓名：" ><el-input v-model="ruleForm.nickname" :placeholder="nickname" @change="print"></el-input></el-form-item>
-                  <el-form-item  prop="sex" label="性别："><el-radio v-model="ruleForm.sex" label="男" >男</el-radio><el-radio v-model="ruleForm.sex" label="女">女</el-radio></el-form-item>
+                  <el-form-item  prop="sex" label="性别："><el-radio v-model="ruleForm.sex" label="男"  v-if="ruleForm.sex === '男' || ruleForm.sex === '女'">男</el-radio><el-radio v-model="ruleForm.sex" label="女" v-if="ruleForm.sex === '男' || ruleForm.sex === '女'">女</el-radio><el-radio v-model="ruleForm.sex" label="权限狗" v-if="ruleForm.sex === '权限狗'">权限狗</el-radio></el-form-item>
                   <el-form-item  prop="birthday"  label="出生日期："><el-date-picker type="date" :placeholder="birthday" v-model="ruleForm.birthday" style="width: 100%;"  value-format="yyyy-MM-dd"></el-date-picker></el-form-item>
                   <el-form-item  prop="introduction" label="简介："><el-input v-model="ruleForm.introduction" :placeholder="introduction"></el-input></el-form-item>
                   <el-form-item  prop="contact" label="联系方式："><el-input v-model="ruleForm.contact" :placeholder="contact"></el-input></el-form-item>
