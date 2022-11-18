@@ -25,7 +25,7 @@
                     <span>出版社：{{book_source[book_index].book_publisher}}</span>
                     <span>语言：{{book_source[book_index].book_language}}</span>
                     <div class="laugh-middle-briefInfo-btn">
-                            <div class="clickToShoping"><span>开始阅读</span></div>
+                            <div ><span><a :href="book_source[book_index].taobao_url" target="_blank">开始阅读</a></span></div>
                             <div @click="changeBookIndex"><span>下一本</span><div ></div></div>
                     </div>
                 </div>
@@ -77,19 +77,22 @@ export default {
           book_name: '改变心理学的40项研究 第7版',
           book_brief: '1、Vue的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。2、Vue的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。3、Vue可以做从简单到复杂的前端单页应用，随处可见的Web前端都可以用Vue来开发。而且Vue上手速度快、功能强大，且提供了非常好用的脚手架vue-cli，很简单就可以构建并让自己的项目跑起来。',
           book_publisher: '人民邮电出版社',
-          book_language: '中文'
+          book_language: '中文',
+          taobao_url: 'https://item.jd.com/66949459642.html'
         },
         {
           book_url: require('@/assets/images/语文.png'),
           book_name: '一年级上册语数人教版',
           book_brief: '一年级上册语文数学英语课本教材教科书人教部编版2021语数英课本 一年级上册语数人教版',
           book_publisher: '人民教育出版社',
-          book_language: '中文'
+          book_language: '中文',
+          taobao_url: 'https://item.jd.com/10059767828614.html'
         }
       ]
     }
   },
   methods: {
+
     // 添加不同的点击事件
     fourBtnClick (clickThing) {
       this[clickThing]()
@@ -265,6 +268,10 @@ export default {
                             color: white;
                             font-size: 22px;
                             line-height: 22px;
+                            >a{
+                              color: white;
+                              text-decoration: none;
+                            }
                         }
                         span:hover{
                              cursor: pointer;
