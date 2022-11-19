@@ -88,6 +88,14 @@ export default {
         // console.log(res1)
       })
     }
+  },
+  created () {
+    // 清空token
+    this.$store.commit('updataToken', '')
+    // 清空用户信息
+    this.$store.commit('updateUserInfo', {})
+    // 清空refresh
+    this.$store.commit('updateRefresh', '')
   }
 }
 </script>
