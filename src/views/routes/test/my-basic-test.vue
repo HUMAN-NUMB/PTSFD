@@ -25,7 +25,7 @@
 <script>
 import { getTestSourseAPI, sendScoreToBackEnd } from '@/api'
 // import Pubsub from 'pubsub-js'
-// import '@/assets/font/font-main.css'
+import '@/assets/font/font-main.css'
 export default {
   name: 'my-base-test',
   async created () {
@@ -164,7 +164,7 @@ export default {
       position: relative;
       // z-index: 2;
       >span{
-        // font-family: 'scoreMain';
+        font-family: 'scoreMain';
         position: absolute;
         top: 25%;
         left: 12%;
